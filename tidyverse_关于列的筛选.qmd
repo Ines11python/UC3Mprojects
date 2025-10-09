@@ -1,0 +1,151 @@
+---
+title: "tidyverse_关于列的筛选"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(dplyr)
+starwars
+```
+
+### select columns
+
+select certain columns by colnames
+
+```{r}
+starwars |> 
+  select(name, mass, eye_color)
+```
+
+通过一定的特征选择列（名字包含a，以“”结尾，最后一列是什么）
+
+```{r}
+#选择最后一列
+starwars |> 
+  select(last_col(), name)
+
+#选择所有列
+starwars |> 
+  select(species , everything())
+
+#列名里包含 “4个连续的大写字母 + 下划线” 的列。
+starwars |> 
+  select(matches("[a-z]{4}_"))
+```
+
+> 正则表达式 
+> -   [A-Z] → 匹配一个大写字母
+> -   {4} → 前面的模式（大写字母）重复 4 次 
+> _ → 下划线
+
+### 练习
+> select the columns names and mass and filter only characters with height > 160  
+
+```{r}
+starwars |> 
+  filter( "height" > 160 ) |> 
+  select("name", "mass")
+```
+### 修改列的名称
+```{r}
+dplyr::rename(starwars, nombre = name, color_eye = eye_color)
+
+```
+
+### 给列重新排序
+```{r}
+starwars |> 
+  relocate(species, gender, .before = everything())
+```
+### 列的增减删
+
+给表格新增一列给每一行给一个唯一的id
+```{r}
+starwars |> 
+  rowid_to_column()
+```
+
+
+### mutuate 用于编辑、修改、新增列
+
+```{r}
+
+starwars |> 
+  mutate(new_name = 1, .before= everything())
+
+```
+
+> 1. modify theh column height(cm) to conver it into meters
+> 2. create a new column bmi with the... bmi = mass / height^2 
+
+```{r}
+starwars |> 
+  mutate("height" = height/100)
+starwars |> 
+  mutate(bmi = (mass / height^2), .after(mass))
+```
+
+## excersize 
+1. Filter the set of **characters** and keep only those that **do not have a missing data in the height** variable. With the data obtained from the previous filter, select only the variables name, height, as well as all those variables that **CONTAIN the word color in their name**.
+```{r}
+starwars2 <-
+starwars |> 
+  drop_na(height) |> 
+  select(name, height, contains("color"))
+```
+2. With the data obtained from the previous Exercise, translate the names of the columns into Spanish (or your motherlanguage).
+```{r}
+starwars_chi <-
+starwars2 |> 
+  rename( "xingming" = name, "shengao" = height, "toufayanse"=hair_color, "fuse" =skin_color, "tongse" = eye_color )
+```
+3. With the data obtained from Exercise 1, place the hair color variable just after the name variable.
+```{r}
+starwars2 |> 
+  relocate(hair_color, .after = name)
+```
+4. With the data obtained from the Exercise 1, check how many unique modalities there are in the hair color variable (without using unique()).
+```{r}
+starwars2 |> 
+  distinct(hair_color)
+```
+
+5. From the original data set, it removes the **list type** columns, and then removes **duplicates in the eye_color** variable. After removing duplicates it extracts that column into a **vector**.
+```{r}
+starwars |> 
+  select(-where(is.list)) |> 
+  distinct(eye_color, .keep_all = TRUE) |> 
+  pull(eye_color)
+```
+6. From the original starwars dataset, with only the characters whose height is known, extract in a vector with that variable.
+```{r}
+
+
+```
+
+
+7.After obtaining the vector from the previous Exercise, use this vector to randomly sample 50% of the data so that the probability of each character being chosen is inversely proportional to their height (shorter, more options).
+
+```{r}
+
+```
+
+
+### recatogorize: if_else ()
+if_else可以和mutate结合，用于给我们的变量重新分类
+We can also combine mutate() with the if_else() control expression to recategorize the variable: if a condition is met, it does one thing, otherwise another.
+
+```{r}
+starwars |> 
+  mutate("heigh_quali" = if_else(height<150, "short", "tall"), .before = everything())
+
+starwars |> 
+  mutate("heigh_quali" = 
+           if_else(height < 150, "tiny",
+                   if_else(height <= 164, "perfect", "too_much")),
+         .after = height)
+
+```
+
