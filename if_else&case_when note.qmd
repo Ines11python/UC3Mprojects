@@ -1,0 +1,85 @@
+---
+title: "ifelse"
+format: html
+editor: visual
+---
+
+## R base with if else
+
+**R base : we can use if elseif and else for multiple conditions**
+
+> if x\>0 , then x multipy by 2 if x\<0, then x divided by 3 otherwise, x= 12345
+
+```{r}
+x <- rnorm(n=1)
+
+if (x > 0) {
+  x <- 2 * x
+} else if (x < 0) {
+  x <- x / 3
+} else {
+  x <- 12345
+}
+```
+
+## if_else
+
+use ifelse with tidyverse to finish the conditions
+
+> create a new variable,"human or not", if species is Human –\> human, otherwise –\>"other weird animal
+
+```{r}
+library(tidyverse)
+
+starwars |> 
+  mutate("human_or_not" =
+           if_else(species == "Human", "human",
+         "other_weird_animal", missing="other_weird_animal"))
+
+
+```
+
+> create a new variable,"human or not", if species is Human –-\> human ifnot: if character is "jabba" --\> "babosa esquerosa" otherwise --\> "other weird animal"
+
+if_else 套用 if_else的写法
+
+```{r}
+
+starwars |> 
+  mutate(
+    "human_or_not" = if_else(
+      species == "Human", "human",
+      if_else(str_detect(name, "jabba"), 
+              "babosa esquerosa", 
+              "other weird animal")
+    )
+  )
+
+```
+
+## case_when
+
+**introduction of case_when**
+
+```{r}
+#| eval: false
+starwars |> 
+  mutate("human_or_not" = 
+           case_when(condition1 ~ value when condition is true,
+                     condition2 ~ value when condition is true,
+                     condition3 ~ value when condition is true,
+                     TRUE ~ value when condition is false))
+```
+
+同样的问题，使用case_when的解法
+
+```{r}
+starwars |> 
+  mutate(
+    human_or_not = case_when(
+      species == "Human" ~ "human",
+      str_detect(name,"jaba") ~ "babosa esquerosa",
+      TRUE ~ "other weird animal"
+    )
+  )
+```
