@@ -1,0 +1,15 @@
+---
+title: "data visualization projects"
+output: html_document
+date: "2025-10-19"
+---
+
+I have researched some data visualization projects from the internet, and have decided to choose one of the charts below.
+
+## Per capita water resource
+
+source : <https://datatopics.worldbank.org/sdgatlas/goal-6-clean-water-and-sanitation?lang=en>
+
+data : easy to access from world bank website.
+
+![](https://datatopics.worldbank.org/dataviz/atlas23-images/en/goal06/c10s2.png)
