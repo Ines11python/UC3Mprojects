@@ -4,12 +4,50 @@ output: html_document
 date: "2025-10-19"
 ---
 
-I have researched some data visualization projects from the internet, and have decided to choose one of the charts below.
+> Maiheliya Maimaitiming
 
-## Per capita water resource
+I have researched some data visualization projects from the internet, and have decided to choose one of the charts below. I would love to hear about your opinion about which is good study and replicate for final project.
 
-source : <https://datatopics.worldbank.org/sdgatlas/goal-6-clean-water-and-sanitation?lang=en>
+### cannabis exposure
 
-data : easy to access from world bank website.
+🔗 source : <https://public.tableau.com/views/CannabisExposures/phv_viz>
+
+✅ data : accessible from this site.
+
+![](https://github.com/Ines11python/UC3Mprojects/blob/main/phv_viz%20(1).png?raw=true)
+
+### Per capita water resource
+
+🔗 source : <https://datatopics.worldbank.org/sdgatlas/goal-6-clean-water-and-sanitation?lang=en>
+
+✅ data : easy to access from world bank website.
 
 ![](https://datatopics.worldbank.org/dataviz/atlas23-images/en/goal06/c10s2.png)
+
+------------------------------------------------------------------------
+
+### The water level in Lake Mead
+
+🔗 source : <https://datatopics.worldbank.org/sdgatlas/goal-6-clean-water-and-sanitation?lang=en>
+
+## ✅ data : easy to access from world bank website. ![](https://datatopics.worldbank.org/dataviz/atlas23-images/en/goal06/c36s3.png)
+
+------------------------------------------------------------------------
+
+### spring crane migration occur earlier
+
+✅ data :tidytuesday data comunity
+
+![](https://github.com/Ines11python/UC3Mprojects/blob/main/image2.png?raw=true)
+
+------------------------------------------------------------------------
+
+### coffee quality
+
+✅ data :idytuesday data comunity
+
+## ![](https://github.com/Ines11python/UC3Mprojects/blob/main/image.png?raw=true)
+
+### women world cup
+
+✅ data :<https://data.world/sportsvizsunday/womens-world-cup-data/workspace/file?filename=Womens+Squads.xlsx> ![](https://raw.githubusercontent.com/Z3tt/TidyTuesday/main/plots/2019_28/2019_28_FIFA_WWCs.png)
